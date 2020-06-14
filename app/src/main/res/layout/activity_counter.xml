@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".ui.CounterActivity">
+
+    <LinearLayout
+        android:id="@+id/counter_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/counter_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="@string/zero"
+            android:textColor="@color/counter_activity_color"
+            android:textSize="120sp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/standard"
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
+
+        <ImageView
+            android:contentDescription="@string/clear_button"
+            android:id="@+id/reset"
+            android:layout_width="@dimen/counter_btn_size"
+            android:layout_height="@dimen/counter_btn_size"
+            android:background="@drawable/counter_btn_bg"
+            android:padding="@dimen/standard"
+            android:src="@drawable/ic_broom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/add"
+            android:contentDescription="@string/add_button"
+            android:layout_width="@dimen/counter_btn_size"
+            android:layout_height="@dimen/counter_btn_size"
+            android:background="@drawable/counter_btn_bg"
+            android:padding="@dimen/standard"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

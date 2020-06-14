@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/x_small"
+    android:layout_marginEnd="@dimen/x_small"
+    android:layout_marginTop="@dimen/small"
+    android:elevation="@dimen/card_elevation"
+    app:cardCornerRadius="@dimen/card_radius">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dua_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amiri"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginStart="@dimen/standard"
+                android:layout_marginEnd="@dimen/standard"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dua_textsize"
+                tools:text="@string/placeholder" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/transliteration"
+                android:layout_marginStart="@dimen/standard"
+                android:layout_marginEnd="@dimen/standard"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/dua_textsize"
+                android:fontFamily="@font/amiri"
+                tools:text="@string/placeholder"/>
+
+
+            <TextView
+                android:id="@+id/count_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/standard"
+                android:layout_marginBottom="@dimen/standard"
+                android:gravity="end"
+                android:text="0"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dua_textsize" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>

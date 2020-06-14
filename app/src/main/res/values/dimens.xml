@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_radius">12dp</dimen>
+    <dimen name="x_small">4dp</dimen>
+    <dimen name="home_icon_height">120dp</dimen>
+    <dimen name="card_elevation">12dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="standard">16dp</dimen>
+    <dimen name="card_width">300dp</dimen>
+    <dimen name="dua_textsize">24sp</dimen>
+    <dimen name="line_spacing">10dp</dimen>
+    <dimen name="counter_btn_size">72dp</dimen>
+    <dimen name="double_standard">32dp</dimen>
+</resources>

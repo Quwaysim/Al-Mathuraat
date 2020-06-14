@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO change the tag back to fragment-->
+<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_settings"
+    android:name="com.quwaysim.maathuraat.ui.fragments.SettingsFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
