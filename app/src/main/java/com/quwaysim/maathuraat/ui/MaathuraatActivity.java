@@ -1,3 +1,8 @@
+/*
+ *Created by Muhammad Akorede Qaasim 
+ *on June 1, 2020
+*/
+
 package com.quwaysim.maathuraat.ui;
 
 import android.content.Intent;

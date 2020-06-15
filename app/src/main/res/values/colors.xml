@@ -6,4 +6,5 @@
     <color name="black">#000000</color>
     <color name="counter_activity_color">#008577</color>
     <color name="background">#24008577</color>
+    <color name="white">#FFFFFF</color>
 </resources>

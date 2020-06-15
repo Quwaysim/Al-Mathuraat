@@ -167,13 +167,13 @@
 
     <!--Header Card Strings-->
     <string-array name="header_strings">
-        <item name="one">And remember your Lord within yourself in humilty and in fear… (Q7 V205)</item>
-        <item name="two">And if an evil suggestion comes to you from Satan, then seek refuge in Allah… (Q7 V200)  </item>
-        <item name="three">And worship your Lord until there comes to you the certainty (death). (Q15 V99) </item>
-        <item name="four">And I did not create the Jinn and Mankind except to worship Me. (Q51 V56)</item>
-        <item name="five">…Unquestionably, by the remembrance of Allah hearts are reassured. (Q13 V28)</item>
+        <item name="one">And remember your Lord within yourself in humility and in fear… (Q7:V205)</item>
+        <item name="two">And if an evil suggestion comes to you from Satan, then seek refuge in Allah… (Q7:V200)  </item>
+        <item name="three">And worship your Lord until there comes to you the certainty (death). (Q15:V99) </item>
+        <item name="four">And I did not create the Jinn and Mankind except to worship Me. (Q51:V56)</item>
+        <item name="five">…Unquestionably, by the remembrance of Allah hearts are reassured. (Q13:V28)</item>
         <item name="six">Do Try to Read Suratul-Kahf</item>
-        <item name="seven">O you who have believed, remember Allah with much remembrance. (Q33 V41)</item>
+        <item name="seven">O you who have believed, remember Allah with much remembrance. (Q33:V41)</item>
         <item name="eight">In the Name of Allah the Benevolent the Merciful</item>
     </string-array>
 
