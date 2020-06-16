@@ -5,7 +5,7 @@
     <!--Maathuraat (English)-->
     <string-array name="transliterations">
         <item name="a1">A\'udhu Billahis-Samee\'i-l-\'Aleem Minash-Shaytaanir-Rajeem</item>
-        <item name="a2">Bismillahir-Rahmaanir-Raheem * Alhamdu lillahi Rabbil-\'Aalameen * Arrahmaanir-Raheem * Maaliki Yawmid-Deen * Iyyaaka Na\'budu Wa Iyyaaka Nasta\'een * Ihdinas-Siraatal-Mustaqeem * Siraatal-Latheena An\'amta Alayhim Ghayril-Maghdoobi Alayhim  Walad-Daalleen (Al-Faatihah)</item>
+        <item name="a2">Bismillahir-Rahmaanir-Raheem * Alhamdu lillahi Rabbil-\'Aalameen * Arrahmaanir-Raheem * Maaliki Yawmid-Deen * Iyyaaka Na\'budu Wa Iyyaaka Nasta\'een * Ihdinas-Siraatal-Mustaqeem * Siraatal-Ladheena An\'amta Alayhim Ghayril-Maghdoobi Alayhim  Walad-Daalleen (Al-Faatihah)</item>
 
         <item name="b1">Alif–Lam–Meem * Dhaalikal–Kitaabu La Rayba Feeh Hudan–Lilmuttaqeen * Alladheena Yu/minoona Bil–Ghaybi Wayuqeemoonas–Salaata Wamimmaa Razaqnaahum Yunfiqoon * Wal–Ladheena Yu/minoona Bimaa Unzila Ilayka Wamaa Unzila Min Qablika Wabil–Aakhirati Hum Yooqinoon * Ulaa–ika \'Alaa Hudam–Minr–Rabbihim Wa/Ulaika Humul–Muflihoon (Suratul-Baqarah 1–5)</item>
         <item name="c1">Allaahu la ilaaha illaa huwa alhayyul–qayyoom laa ta/khudhuhu sinatun walaa nawmun lahoo maa fees–samaawaati wamaa feel–ardi man dhal–ladhee yashfa\'u \'indahoo illaa bi–idhnihee ya\'lamu maa bayna aydeehim wamaa khalfahum walaa yuheetoona bishay/in min \'ilmihee illaa bimaa shaa/a wasi\'a kursiyyuhus–samaawaati wal/arda walaa ya/ooduhoo hifzuhumaa wahuwal–\'aliyyul–\'adzeem * Laa ikraaha feed–deeni qad tabayyanar–rushdu minal–ghayyi faman yakfur bit–taaghooti wayu/min billahi faqadi–stamsaka bil\'urwatil–wuthqaa lan-fisaama lahaa wallaahu samee\'un \'aleem * Allahu waliyyul-ladheena /aamanoo yukhrijuhum mina-zzulumaati ilan-noori wal-ladheena kafaroo awliyaa/uhumut-taaghootu yukhrijoonahum minan-noori ilazzulumaati ulaa/ika as-haabun-naari hum feeha khaalidoon (Suratul-Baqarah: 255–257)</item>
@@ -186,7 +186,7 @@
     <string name="header_home">بسم الله الرحمن الرحيم</string>
     <string name="header_en">In the name of Allah, the Benevolent, the Merciful</string>
     <string name="settings">Settings</string>
-    <string name="counter">Counter</string>
+    <string name="counter">Subhah</string>
     <string name="_1">-1</string>
     <string name="placeholder">Miklab: Aboki, Fauziyah, Muhammad</string>
     <string name="key_trans">show_translation</string>
@@ -200,6 +200,11 @@
     <string name="text_size_summary">change font size</string>
     <string name="text_size">Text Size</string>
     <string name="others">Others</string>
+    <string name="splash_text">المأثورات</string>
+    <string name="splash_details">أذكار من الكتاب والسنة</string>
+    <string name="khamsoon_ar">خمسون</string>
+    <string name="share">Share</string>
+    <string name="about_us">About us</string>
 
     <!--
 

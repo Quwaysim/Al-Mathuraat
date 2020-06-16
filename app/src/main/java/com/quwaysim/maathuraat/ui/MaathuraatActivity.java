@@ -1,7 +1,7 @@
 /*
- *Created by Muhammad Akorede Qaasim 
+ *Created by Muhammad Akorede Qaasim
  *on June 1, 2020
-*/
+ */
 
 package com.quwaysim.maathuraat.ui;
 
@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,23 +85,31 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.key_trans)) || key.equals(getString(R.string.key_size))) {
-//            setShowTransliteration(sharedPreferences.getBoolean(key,
-//                    getResources().getBoolean(R.bool.trans_bool)));
-//          TODO find a replacement for recreate();
+            //TODO find a replacement for recreate();
             recreate();
-
-//            setShowTransliteration(getResources().getBoolean(R.bool.trans_bool));
-//            recyclerView.getAdapter().notifyDataSetChanged();
-//            duaAdapter.notifyDataSetChanged();
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.settings) {
-            startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
-            return true;
+        switch (id) {
+            case R.id.settings:
+                startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
+                return true;
+            case R.id.share:
+                //TODO customise this msg
+                String msg = "https://play.google.com/store/apps/details?id=com.quwaysim.maathuraat";
+                ShareCompat.IntentBuilder.from(this)
+                        .setText(msg)
+                        .setType("text/plain")
+                        .setChooserTitle("Share App Link")
+                        .startChooser();
+                return true;
+            case R.id.about_us:
+                //TODO Finish up the About us Activity
+                Toast.makeText(this, "Quwaysim et Aboki et Ziya", Toast.LENGTH_SHORT).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

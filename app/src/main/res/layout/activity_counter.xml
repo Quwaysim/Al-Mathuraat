@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg_test"
     android:orientation="vertical"
     tools:context=".ui.CounterActivity">
 
@@ -30,44 +30,65 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_margin="@dimen/standard"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/small">
 
         <ImageView
-            android:contentDescription="@string/clear_button"
             android:id="@+id/reset"
             android:layout_width="@dimen/counter_btn_size"
             android:layout_height="@dimen/counter_btn_size"
             android:background="@drawable/counter_btn_bg"
-            android:padding="@dimen/standard"
-            android:src="@drawable/ic_broom"
+            android:contentDescription="@string/clear_button"
+            android:padding="@dimen/small"
+            android:src="@drawable/ic_clear"
+            android:stateListAnimator="@animator/lift_on_touch"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/add"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
             android:id="@+id/add"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/counter_btn_bg"
             android:contentDescription="@string/add_button"
+            android:padding="@dimen/small"
+            android:src="@drawable/ic_add"
+            android:stateListAnimator="@animator/lift_on_touch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/minus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/reset"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/minus"
             android:layout_width="@dimen/counter_btn_size"
             android:layout_height="@dimen/counter_btn_size"
             android:background="@drawable/counter_btn_bg"
-            android:padding="@dimen/standard"
-            android:src="@drawable/ic_add"
+            android:contentDescription="@string/add_button"
+            android:padding="@dimen/small"
+            android:src="@drawable/ic_minus"
+            android:stateListAnimator="@animator/lift_on_touch"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/double_standard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,9 +1,9 @@
 package com.quwaysim.maathuraat.ui;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.quwaysim.maathuraat.R;
 
 public class CounterActivity extends AppCompatActivity {
+    private static final String TAG = CounterActivity.class.getSimpleName();
     private TextView counter;
     private int count;
     private MediaPlayer mp;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +29,11 @@ public class CounterActivity extends AppCompatActivity {
         //widgets
         ImageView add = findViewById(R.id.add);
         ImageView reset = findViewById(R.id.reset);
+        ImageView minus = findViewById(R.id.minus);
+
         counter = findViewById(R.id.counter_textView);
         LinearLayout counter_layout = findViewById(R.id.counter_layout);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mp = MediaPlayer.create(this, R.raw.clickcounter);
 
@@ -36,6 +42,9 @@ public class CounterActivity extends AppCompatActivity {
             counter.setText(countValue);
             assert countValue != null;
             count = Integer.parseInt(countValue);
+        } else if (mSharedPreferences.getInt("counter_value", 0) != 0) {
+            count = mSharedPreferences.getInt("counter_value", 0);
+            counter.setText(String.valueOf(count));
         } else {
             count = 0;
         }
@@ -60,30 +69,22 @@ public class CounterActivity extends AppCompatActivity {
                 reset();
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.counter_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.dec_one) {
-            if (count > 0) {
-                count--;
-                counter.setText(String.valueOf(count));
-                return true;
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (count > 0) {
+                    count--;
+                    play();
+                    counter.setText(String.valueOf(count));
+                }
             }
-        }
-        return super.onOptionsItemSelected(item);
+        });
     }
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
         String counterValue = counter.getText().toString();
         outState.putString("COUNTER", counterValue);
     }
@@ -114,14 +115,33 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: called");
+        mp.release();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt("counter_value", count);
+        editor.apply();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause: called");
         mp.release();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt("counter_value", count);
+        editor.apply();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: called");
         mp.release();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt("counter_value", count);
+        editor.apply();
     }
+
 }

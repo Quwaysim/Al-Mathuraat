@@ -17,15 +17,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        int SPLASH_DISPLAY_LENGTH = 2500;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        /* Create an Intent that will start the Menu-Activity. */
-                        Intent mainIntent = new Intent(SplashScreenActivity.this, HomeActivity.class);
-                        SplashScreenActivity.this.startActivity(mainIntent);
-                        SplashScreenActivity.this.finish();
-                    }
-                }, SPLASH_DISPLAY_LENGTH);
+        int SPLASH_DISPLAY_LENGTH = 1500;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent mainIntent = new Intent(SplashScreenActivity.this, HomeActivity.class);
+                SplashScreenActivity.this.startActivity(mainIntent);
+                SplashScreenActivity.this.finish();
+            }
+        }, SPLASH_DISPLAY_LENGTH);
     }
 }

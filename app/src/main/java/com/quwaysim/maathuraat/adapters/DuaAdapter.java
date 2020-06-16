@@ -44,7 +44,7 @@ public class DuaAdapter extends RecyclerView.Adapter<DuaAdapter.DuaViewHolder> {
             holder.transliterationTextView.setVisibility(View.VISIBLE);
             String trans = mTransList[position];
             holder.transliterationTextView.setText(trans);
-            holder.transliterationTextView.setTextSize(mSize);
+            holder.transliterationTextView.setTextSize(mSize-4);
         }
 //        if (holder.counter != null)
 //            if (position == 0 || position == 8 || position == 22 || position == 24 || position == 26) {

@@ -1,3 +1,8 @@
+/*
+ * Created by Muhammad Akorede Qaasim
+ * on June 1, 2020
+ */
+
 package com.quwaysim.maathuraat.ui;
 
 import android.content.Intent;
@@ -28,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         khamsoon = findViewById(R.id.khamsoon_card);
         quraan = findViewById(R.id.Quraan_card);
         header_en = findViewById(R.id.header_en);
+
         String[] dailyMsg = getResources().getStringArray(R.array.header_strings);
         header_en.setText(setDailyMsg(dailyMsg));
 
