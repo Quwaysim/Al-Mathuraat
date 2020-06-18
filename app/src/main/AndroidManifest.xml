@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.AboutUsActivity"
+            android:label="@string/about_us"
+            android:parentActivityName=".ui.MaathuraatActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MaathuraatActivity" />
+        </activity>
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/settings"

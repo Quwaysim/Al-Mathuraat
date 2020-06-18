@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.quwaysim.maathuraat.R;
 import com.quwaysim.maathuraat.adapters.DuaAdapter;
+import com.quwaysim.maathuraat.ui.fragments.AboutUsDialogFragment;
 
 public class MaathuraatActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -40,7 +40,6 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
 
         setupSharedPreferences();
     }
-
 
     public void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -98,8 +97,7 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
                 startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
                 return true;
             case R.id.share:
-                //TODO customise this msg
-                String msg = "https://play.google.com/store/apps/details?id=com.quwaysim.maathuraat";
+                String msg = getString(R.string.share_text) + getString(R.string.share_link);
                 ShareCompat.IntentBuilder.from(this)
                         .setText(msg)
                         .setType("text/plain")
@@ -107,8 +105,8 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
                         .startChooser();
                 return true;
             case R.id.about_us:
-                //TODO Finish up the About us Activity
-                Toast.makeText(this, "Quwaysim et Aboki et Ziya", Toast.LENGTH_SHORT).show();
+                new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
+//                startActivity(new Intent(MaathuraatActivity.this, AboutUsActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
