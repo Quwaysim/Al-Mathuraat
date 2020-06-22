@@ -1,9 +1,11 @@
 package com.quwaysim.maathuraat.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,17 +16,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+import androidx.core.app.ShareCompat;
 import androidx.preference.PreferenceManager;
 
 import com.quwaysim.maathuraat.R;
+import com.quwaysim.maathuraat.ui.fragments.AboutUsDialogFragment;
 
-public class CounterActivity extends AppCompatActivity {
+public class CounterActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = CounterActivity.class.getSimpleName();
     private TextView counter;
     private int count;
-    private MediaPlayer mp;
     private SharedPreferences mSharedPreferences;
+    private MediaPlayer mp;
+    private boolean clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +48,13 @@ public class CounterActivity extends AppCompatActivity {
 
         counter = findViewById(R.id.counter_textView);
         LinearLayout counter_layout = findViewById(R.id.counter_layout);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mp = MediaPlayer.create(this, R.raw.clickcounter);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        clickSound = mSharedPreferences.getBoolean(getString(R.string.key_enable_sound), false);
+
+        if (clickSound) {
+            mp = MediaPlayer.create(this, R.raw.clickcounter);
+        }
 
         if (savedInstanceState != null) {
             String countValue = savedInstanceState.getString("COUNTER");
@@ -59,43 +68,56 @@ public class CounterActivity extends AppCompatActivity {
             count = 0;
         }
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count();
-            }
-        });
         counter_layout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                count();
+            public void onClick(View v) {
+                addOne();
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addOne();
             }
         });
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                reset();
+            public void onClick(View v) {
+                resetCount();
             }
         });
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count > 0) {
-                    count--;
-                    play();
-                    counter.setText(String.valueOf(count));
-                }
+                minusOne();
             }
         });
 
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+        switch (id) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            case R.id.share:
+                shareAppLink();
+                return true;
+            case R.id.about_us:
+                new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
+                return true;
+            case R.id.settings:
+                startActivity(new Intent(CounterActivity.this, SettingsActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,7 +133,7 @@ public class CounterActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: called");
-        mp.release();
+        releaseMediaPlayer();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt("counter_value", count);
         editor.apply();
@@ -121,7 +143,7 @@ public class CounterActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: called");
-        mp.release();
+        releaseMediaPlayer();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt("counter_value", count);
         editor.apply();
@@ -131,34 +153,66 @@ public class CounterActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop: called");
-        mp.release();
+        releaseMediaPlayer();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt("counter_value", count);
         editor.apply();
     }
 
-    private void count() {
+    private void addOne() {
         count += 1;
         play();
         counter.setText(String.valueOf(count));
     }
 
-    private void reset() {
+    private void resetCount() {
         count = 0;
         counter.setText(String.valueOf(count));
     }
 
+    private void minusOne() {
+        if (count > 0) {
+            play();
+            count--;
+            counter.setText(String.valueOf(count));
+        }
+    }
+
     private void play() {
-        mp.start();
-        try {
-            if (mp.isPlaying()) {
-                mp.stop();
-                mp.release();
-                mp = MediaPlayer.create(this, R.raw.clickcounter);
+        if (clickSound) {
+            try {
+                if (mp.isPlaying()) {
+                    mp.stop();
+                    mp.release();
+                    mp = MediaPlayer.create(this, R.raw.clickcounter);
+                }
+                mp.start();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+    }
+
+    private void releaseMediaPlayer() {
+        if (mp != null) {
+            mp.release();
+        }
+    }
+
+    private void shareAppLink() {
+        String msg = getString(R.string.share_text) + getString(R.string.share_link);
+        ShareCompat.IntentBuilder.from(this)
+                .setText(msg)
+                .setType("text/plain")
+                .setChooserTitle("Share App Link")
+                .startChooser();
+    }
+
+    //TODO not working
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (s.equals(getString(R.string.key_enable_sound))){
+            recreate();
         }
     }
 }

@@ -2,21 +2,35 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <CheckBoxPreference
-        android:defaultValue="@bool/trans_bool"
-        android:key="@string/key_trans"
-        android:summaryOff="@string/hidden"
-        android:summaryOn="@string/shown"
-        android:title="@string/transliteration" />
+    <PreferenceCategory android:title="Al-Mathuraat">
 
-    <SeekBarPreference
-        android:defaultValue="24"
-        android:key="@string/key_size"
-        android:max="50"
-        android:summary="@string/text_size_summary"
-        android:title="@string/text_size"
-        app:min="20"
-        app:seekBarIncrement="5"
-        app:showSeekBarValue="true" />
+        <CheckBoxPreference
+            android:defaultValue="@bool/trans_bool"
+            android:key="@string/key_trans"
+            android:summaryOff="@string/hidden"
+            android:summaryOn="@string/shown"
+            android:title="@string/transliteration" />
+
+        <SeekBarPreference
+            android:defaultValue="24"
+            android:key="@string/key_size"
+            android:max="50"
+            android:summary="@string/text_size_summary"
+            android:title="@string/text_size"
+            app:min="20"
+            app:seekBarIncrement="5"
+            app:showSeekBarValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Subhah">
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/sound_bool"
+            android:key="@string/key_enable_sound"
+            android:summaryOff="@string/off"
+            android:summaryOn="@string/on"
+            android:title="@string/enable_counter_text" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

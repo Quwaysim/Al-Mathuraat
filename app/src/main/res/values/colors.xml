@@ -10,5 +10,6 @@
     <color name="counter_icons_color">#FFFFFF</color>
     <color name="home_icons_color">#00574B</color>
     <color name="card_color">#FFFFFF</color>
+    <color name="materialCardViewStrokeColour">#20000000</color>
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_test"
+    android:background="@drawable/background"
     android:fillViewport="true"
     tools:context=".ui.HomeActivity">
 
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/maathuraaat_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,7 +63,9 @@
                 app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/card_group_constraint">
+                app:layout_constraintTop_toTopOf="@id/card_group_constraint"
+                app:strokeColor="@color/materialCardViewStrokeColour"
+                app:strokeWidth="@dimen/stroke_width">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,9 +99,9 @@
                         android:layout_margin="@dimen/small"
                         android:text="@string/al_maathuraat" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/khamsoon_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -108,7 +110,9 @@
                 app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"
-                app:layout_constraintTop_toTopOf="@id/card_group_constraint">
+                app:layout_constraintTop_toTopOf="@id/card_group_constraint"
+                app:strokeColor="@color/materialCardViewStrokeColour"
+                app:strokeWidth="@dimen/stroke_width">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,7 +146,7 @@
                         android:layout_margin="@dimen/small"
                         android:text="@string/khamsoon" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -151,7 +155,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/subhah_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -161,7 +165,9 @@
                 app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maathuraaat_card">
+                app:layout_constraintTop_toBottomOf="@+id/maathuraaat_card"
+                app:strokeColor="@color/materialCardViewStrokeColour"
+                app:strokeWidth="@dimen/stroke_width">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -187,9 +193,9 @@
                         android:text="@string/subhah" />
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/Quraan_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -199,7 +205,9 @@
                 app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/khamsoon_card">
+                app:layout_constraintTop_toBottomOf="@+id/khamsoon_card"
+                app:strokeColor="@color/materialCardViewStrokeColour"
+                app:strokeWidth="@dimen/stroke_width">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,7 +234,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <View
                 android:layout_width="match_parent"

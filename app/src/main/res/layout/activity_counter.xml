@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_test"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".ui.CounterActivity">
 
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/add"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/add_btn_size"
+            android:layout_height="@dimen/add_btn_size"
             android:layout_marginStart="@dimen/standard"
             android:layout_marginEnd="@dimen/standard"
             android:background="@drawable/counter_btn_bg"

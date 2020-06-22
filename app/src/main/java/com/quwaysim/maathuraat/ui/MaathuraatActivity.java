@@ -97,19 +97,22 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
                 startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
                 return true;
             case R.id.share:
-                String msg = getString(R.string.share_text) + getString(R.string.share_link);
-                ShareCompat.IntentBuilder.from(this)
-                        .setText(msg)
-                        .setType("text/plain")
-                        .setChooserTitle("Share App Link")
-                        .startChooser();
+                shareAppLink();
                 return true;
             case R.id.about_us:
                 new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
-//                startActivity(new Intent(MaathuraatActivity.this, AboutUsActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareAppLink() {
+        String msg = getString(R.string.share_text) + getString(R.string.share_link);
+        ShareCompat.IntentBuilder.from(this)
+                .setText(msg)
+                .setType("text/plain")
+                .setChooserTitle("Share App Link")
+                .startChooser();
     }
 
     @Override
