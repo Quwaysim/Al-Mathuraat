@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/x_small"
-    android:layout_marginEnd="@dimen/x_small"
     android:layout_marginTop="@dimen/small"
+    android:layout_marginEnd="@dimen/x_small"
     android:elevation="@dimen/card_elevation"
     app:cardCornerRadius="@dimen/card_radius">
 
@@ -19,16 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard"
+            android:fontFamily="@font/tajawal"
             android:gravity="center"
-            android:lineSpacingExtra="@dimen/line_spacing"
-            android:fontFamily="@font/amiri"
+            android:lineSpacingExtra="@dimen/dua_line_spacing"
             android:textColor="@color/black"
             android:textSize="@dimen/dua_textsize"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Miklab: Aboki, Fauziyah, Muhammad...." />
+            tools:text="@string/tools_khamsoon_dua" />
+
+        <TextView
+            android:id="@+id/textview_references"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/tajawal"
+            android:lineSpacingExtra="@dimen/references_line_spacing"
+            tools:text="@string/tools_khamsoon_references"
+            android:textSize="@dimen/references_textsize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/dua_text"
+            app:layout_constraintStart_toStartOf="@+id/dua_text"
+            app:layout_constraintTop_toBottomOf="@+id/dua_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

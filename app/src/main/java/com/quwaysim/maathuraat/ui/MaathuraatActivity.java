@@ -36,7 +36,7 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
         setContentView(R.layout.activity_maathuraat);
         recyclerView = findViewById(R.id.dua_recyclerview);
         maathuraatList = getResources().getStringArray(R.array.maathuraat);
-        transList = getResources().getStringArray(R.array.transliterations);
+        transList = getResources().getStringArray(R.array.maathuraat_transliterations);
 
         setupSharedPreferences();
     }
@@ -70,11 +70,13 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
             duaAdapter = new DuaAdapter(this,
                     maathuraatList,
                     transList,
+                    null,
                     R.layout.dua_recyclerview_item,
                     size);
         } else {
             duaAdapter = new DuaAdapter(this,
                     maathuraatList,
+                    null,
                     null,
                     R.layout.dua_recyclerview_item,
                     size);
@@ -92,16 +94,15 @@ public class MaathuraatActivity extends AppCompatActivity implements SharedPrefe
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.settings:
-                startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
-                return true;
-            case R.id.share:
-                shareAppLink();
-                return true;
-            case R.id.about_us:
-                new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
-                return true;
+        if (id == R.id.settings) {
+            startActivity(new Intent(MaathuraatActivity.this, SettingsActivity.class));
+            return true;
+        } else if (id == R.id.share) {
+            shareAppLink();
+            return true;
+        } else if (id == R.id.about_us) {
+            new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -6,38 +6,52 @@
 package com.quwaysim.maathuraat.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ShareCompat;
+import androidx.preference.PreferenceManager;
 
 import com.quwaysim.maathuraat.R;
+import com.quwaysim.maathuraat.ui.fragments.AboutUsDialogFragment;
+import com.quwaysim.maathuraat.utils.Notification;
 
 import java.util.Calendar;
-import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity {
-    private CardView maathuraat, subhah, khamsoon, quraan;
-    private TextView header_en;
+public class HomeActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Objects.requireNonNull(getSupportActionBar()).hide();
-        maathuraat = findViewById(R.id.maathuraaat_card);
-        subhah = findViewById(R.id.subhah_card);
-        khamsoon = findViewById(R.id.khamsoon_card);
-        quraan = findViewById(R.id.Quraan_card);
-        header_en = findViewById(R.id.header_en);
+
+        CardView maathuraat = findViewById(R.id.maathuraaat_card);
+        CardView subhah = findViewById(R.id.subhah_card);
+        CardView khamsoon = findViewById(R.id.khamsoon_card);
+        CardView quraan = findViewById(R.id.Quraan_card);
+        TextView header_en = findViewById(R.id.header_en);
 
         String[] dailyMsg = getResources().getStringArray(R.array.header_strings);
         header_en.setText(setDailyMsg(dailyMsg));
-
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        boolean reminderSet = sharedPreferences.getBoolean(getResources().getString(R.string.key_enable_reminder), false);
+        if (reminderSet) {
+            //Create notification with AlarmManager
+            Notification notification = new Notification(this);
+            notification.createNotification();
+        } else {
+            //Cancel notifications with AlarmManager
+        }
         maathuraat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +83,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public String setDailyMsg(String[] strings) {
-
         Calendar time = Calendar.getInstance();
         int day = time.get(Calendar.DAY_OF_WEEK);
         switch (day) {
@@ -90,5 +103,50 @@ public class HomeActivity extends AppCompatActivity {
             default:
                 return strings[7];
         }
+    }
+
+    private void shareAppLink() {
+        String msg = getString(R.string.share_text) + getString(R.string.share_link);
+        ShareCompat.IntentBuilder.from(this)
+                .setText(msg)
+                .setType("text/plain")
+                .setChooserTitle("Share App Link")
+                .startChooser();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings) {
+            startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+            return true;
+        } else if (id == R.id.share) {
+            shareAppLink();
+            return true;
+        } else if (id == R.id.about_us) {
+            new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getResources().getString(R.string.key_enable_reminder))){
+            recreate();
+        }
+
     }
 }

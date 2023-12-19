@@ -1,5 +1,6 @@
 package com.quwaysim.maathuraat.ui;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -104,20 +105,19 @@ public class CounterActivity extends AppCompatActivity implements SharedPreferen
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            case R.id.share:
-                shareAppLink();
-                return true;
-            case R.id.about_us:
-                new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
-                return true;
-            case R.id.settings:
-                startActivity(new Intent(CounterActivity.this, SettingsActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                return true;
+        if (id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        } else if (id == R.id.share) {
+            shareAppLink();
+            return true;
+        } else if (id == R.id.about_us) {
+            new AboutUsDialogFragment().show(getSupportFragmentManager(), "AboutUsFragment");
+            return true;
+        } else if (id == R.id.settings) {
+            startActivity(new Intent(CounterActivity.this, SettingsActivity.class));
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -206,12 +206,14 @@ public class CounterActivity extends AppCompatActivity implements SharedPreferen
                 .setType("text/plain")
                 .setChooserTitle("Share App Link")
                 .startChooser();
+
     }
 
     //TODO not working
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals(getString(R.string.key_enable_sound))){
+
             recreate();
         }
     }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.quwaysim.maathuraat">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -10,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/settings"
@@ -44,7 +43,8 @@
                 android:value=".ui.HomeActivity" />
         </activity>
         <activity android:name=".ui.HomeActivity" />
-        <activity android:name=".ui.SplashScreenActivity">
+        <activity android:name=".ui.SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

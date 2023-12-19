@@ -2,4 +2,5 @@
 <resources>
     <bool name="trans_bool">true</bool>
     <bool name="sound_bool">false</bool>
+    <bool name="reminder_bool">false</bool>
 </resources>

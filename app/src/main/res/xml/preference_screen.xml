@@ -33,4 +33,12 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Notifications">
+        <CheckBoxPreference
+            android:defaultValue="@bool/reminder_bool"
+            android:key="@string/key_enable_reminder"
+            android:summary="@string/reminder_summary"
+            android:title="@string/enable_adhkar_text"/>
+    </PreferenceCategory>
+
 </PreferenceScreen>
